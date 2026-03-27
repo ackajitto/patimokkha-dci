@@ -199,8 +199,12 @@
             <input id="reg-chants" type="number" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold focus:ring-2 focus:ring-dci-gold/20" placeholder="0" min="0">
           </div>
           <div>
-            <label for="reg-photo" class="block text-sm font-semibold text-dci-text-light mb-1">รูปภาพ (URL)</label>
-            <input id="reg-photo" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold focus:ring-2 focus:ring-dci-gold/20" placeholder="https://...">
+            <label for="reg-photo" class="block text-sm font-semibold text-dci-text-light mb-1">รูปภาพประจำตัว (อัปโหลดไฟล์)</label>
+            <input id="reg-photo" type="file" accept="image/png, image/jpeg, image/webp" 
+                   class="w-full px-3 py-1.5 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold focus:ring-2 focus:ring-dci-gold/20 text-sm cursor-pointer
+                          file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 
+                          file:text-sm file:font-semibold file:bg-dci-gold file:text-dci-deep 
+                          hover:file:bg-dci-gold-light transition-colors">
           </div>
         </div>
 
@@ -453,7 +457,14 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div><label class="block text-xs font-bold text-dci-text-light mb-1">ยอดสวด (ครั้ง)</label><input id="edit-chants" type="number" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none"></div>
-        <div><label class="block text-xs font-bold text-dci-text-light mb-1">รูปภาพ (URL)</label><input id="edit-photo" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none"></div>
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">เปลี่ยนรูปภาพ (อัปโหลดไฟล์ใหม่)</label>
+          <input id="edit-photo" type="file" accept="image/png, image/jpeg, image/webp" 
+                 class="w-full px-3 py-1.5 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none text-xs cursor-pointer
+                        file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 
+                        file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 
+                        hover:file:bg-blue-100 transition-colors">
+        </div>
       </div>
 
       <div class="flex gap-3 pt-4 border-t border-dci-cream-dark">
@@ -519,6 +530,17 @@
 </div>
 
 <script>
+// ─── HELPER FUNCTIONS ───
+// แปลงไฟล์รูปภาพเป็น Base64
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 // ─── DATA STORE ───
 let monks = [
   { id: 1, status: 'approved', rank: 'พระมหา', name: 'สมศักดิ์ สุขุมาโล', lastname: '-', temple: 'วัดพระศรีรัตนศาสดาราม', province: 'กรุงเทพฯ', vassas: 22, chants: 87, contact: '081-234-5678', bio: 'เปรียญธรรม 9 ประโยค ผ่านการอบรมสวดปาฏิโมกข์ระดับสูง', tags: ['ป.ธ.9', 'อบรมครู', 'บาลีชั้นสูง'], photo: '', registered: '2023-01-10' },
@@ -695,12 +717,14 @@ function openAdminMonkModal(id) {
   document.getElementById('edit-contact').value = monk.contact !== '-' ? monk.contact : '';
   document.getElementById('edit-bio').value = monk.bio !== '-' ? monk.bio : '';
   document.getElementById('edit-chants').value = monk.chants;
-  document.getElementById('edit-photo').value = monk.photo || '';
+  
+  // Clear the file input visually
+  document.getElementById('edit-photo').value = '';
   
   openModal('adminEditMonkModal', 'adminEditMonkContent');
 }
 
-function saveAdminMonkEdit() {
+async function saveAdminMonkEdit() {
   const id = parseInt(document.getElementById('edit-id').value);
   const m = monks.find(m => m.id === id);
   if(!m) return;
@@ -714,7 +738,17 @@ function saveAdminMonkEdit() {
   m.contact = document.getElementById('edit-contact').value.trim() || '-';
   m.bio = document.getElementById('edit-bio').value.trim() || '-';
   m.chants = parseInt(document.getElementById('edit-chants').value) || 0;
-  m.photo = document.getElementById('edit-photo').value.trim();
+  
+  // Handle new file upload if admin selected one
+  const fileInput = document.getElementById('edit-photo');
+  if (fileInput.files.length > 0) {
+    try {
+      m.photo = await getBase64(fileInput.files[0]);
+    } catch(err) {
+      console.error("Error reading file:", err);
+      showToast('⚠️ เกิดข้อผิดพลาดในการอ่านไฟล์รูปภาพ');
+    }
+  }
 
   closeModal('adminEditMonkModal', 'adminEditMonkContent');
   showToast('💾 บันทึกข้อมูลการแก้ไขรายชื่อเรียบร้อยแล้ว');
@@ -785,10 +819,23 @@ function adminDeleteReq(id) {
 }
 
 // ─── USER SUBMISSION LOGIC (PUBLIC) ───
-function registerMonk() {
+async function registerMonk() {
   const name = document.getElementById('reg-name').value.trim();
   const temple = document.getElementById('reg-temple').value.trim();
   if (!name || !temple) { showToast('⚠️ กรุณากรอกช่องที่มีเครื่องหมาย * ให้ครบถ้วน'); return; }
+  
+  // Process File Upload via Base64
+  const fileInput = document.getElementById('reg-photo');
+  let photoData = '';
+  if (fileInput.files.length > 0) {
+    try {
+      photoData = await getBase64(fileInput.files[0]);
+    } catch(err) {
+      console.error("Error reading file:", err);
+      showToast('⚠️ เกิดข้อผิดพลาดในการอ่านไฟล์รูปภาพ');
+      return;
+    }
+  }
   
   monks.push({ 
     id: monks.length + 1, 
@@ -803,7 +850,7 @@ function registerMonk() {
     contact: document.getElementById('reg-contact').value.trim() || '-', 
     bio: document.getElementById('reg-bio').value.trim() || '-', 
     tags: ['ผู้ลงทะเบียนใหม่'], 
-    photo: document.getElementById('reg-photo').value.trim() || '', 
+    photo: photoData, 
     registered: new Date().toISOString().split('T')[0] 
   });
   
