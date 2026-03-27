@@ -31,16 +31,15 @@
     min-height: 100vh;
   }
 
-  /* ─── HEADER ─── */
-  header {
-    background: linear-gradient(135deg, var(--deep) 0%, var(--dark) 40%, var(--maroon) 100%);
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-  }
-
+ /* ─── HEADER ─── */
+  header {
+    background: linear-gradient(135deg, var(--deep) 0%, var(--dark) 40%, var(--maroon) 100%);
+    padding: 0;
+    /* ลบ position: sticky; และ top: 0; ออก */
+    position: relative; 
+    z-index: 100;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
   .header-inner {
     max-width: 1200px;
     margin: 0 auto;
@@ -345,12 +344,30 @@
     margin-bottom: 60px;
   }
 
-  @media (max-width: 768px) {
-    .forms-grid { grid-template-columns: 1fr; }
-    .monks-grid { grid-template-columns: 1fr; }
-    nav { display: none; }
-    .stat-item { padding: 12px 20px; }
-  }
+ @media (max-width: 768px) {
+    .forms-grid { grid-template-columns: 1fr; }
+    .monks-grid { grid-template-columns: 1fr; }
+    .stat-item { padding: 12px 20px; }
+    
+    /* จัดระเบียบ Header ใหม่ในมือถือ และนำคำสั่งซ่อนปุ่มออก */
+    .header-inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+    }
+    .header-emblem {
+      margin: 0 auto;
+    }
+    nav { 
+      margin-left: 0;
+      justify-content: center;
+      width: 100%;
+    }
+    nav button {
+      flex: 1 1 45%; 
+      padding: 8px 4px;
+    }
+  }
 
   .form-card {
     background: var(--white);
