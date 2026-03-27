@@ -59,16 +59,17 @@
     box-shadow: 0 0 20px rgba(200,151,43,0.5);
   }
 
-  .header-title h1 {
+ .header-title h1 {
     font-family: 'Chakra Petch', sans-serif;
-    color: var(--gold-light);
+    color: var(--white); /* เปลี่ยนเป็นสีขาวสว่างให้ตัดกับพื้นหลัง */
     font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6); /* เพิ่มเงาดำบางๆ ให้ตัวอักษรลอยเด่นขึ้นมา */
   }
 
   .header-title p {
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.9); /* ปรับคำอธิบายให้สว่างขึ้น */
     font-size: 0.8rem;
     margin-top: 2px;
   }
@@ -82,8 +83,8 @@
 
   nav button {
     background: transparent;
-    border: 1px solid rgba(200,151,43,0.4);
-    color: var(--gold-pale);
+    border: 1px solid rgba(245, 230, 192, 0.5); /* ปรับสีขอบปุ่มให้สว่างขึ้น */
+    color: var(--white); /* เปลี่ยนสีตัวหนังสือในปุ่มเป็นสีขาว */
     padding: 7px 16px;
     border-radius: 4px;
     cursor: pointer;
@@ -93,12 +94,11 @@
   }
 
   nav button:hover, nav button.active {
-    background: var(--gold);
+    background: var(--gold-light); /* ใช้สีทองที่สว่างขึ้นเวลากดเลือก */
     color: var(--deep);
-    border-color: var(--gold);
-    font-weight: 600;
+    border-color: var(--gold-light);
+    font-weight: 700;
   }
-
   /* ─── HERO ─── */
   .hero {
     background: linear-gradient(180deg, var(--deep) 0%, var(--dark) 100%);
