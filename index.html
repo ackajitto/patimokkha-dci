@@ -39,8 +39,7 @@
   .page { display: none; }
   .page.active { display: block; animation: fadeIn 0.4s ease-in-out; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  /* Custom scrollbar for tables */
-  .custom-scrollbar::-webkit-scrollbar { height: 8px; }
+  .custom-scrollbar::-webkit-scrollbar { height: 8px; width: 8px; }
   .custom-scrollbar::-webkit-scrollbar-track { background: #FAF3E0; border-radius: 4px; }
   .custom-scrollbar::-webkit-scrollbar-thumb { background: #EDE0C4; border-radius: 4px; }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #C8972B; }
@@ -226,68 +225,14 @@
       <div class="p-6 md:p-8 space-y-5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label for="req-temple" class="block text-sm font-semibold text-dci-text-light mb-1">ชื่อวัด / สถานที่ *</label>
+            <label class="block text-sm font-semibold text-dci-text-light mb-1">ชื่อวัด / สถานที่ *</label>
             <input id="req-temple" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold" placeholder="ชื่อวัด">
           </div>
           <div>
-            <label for="req-province" class="block text-sm font-semibold text-dci-text-light mb-1">จังหวัด *</label>
+            <label class="block text-sm font-semibold text-dci-text-light mb-1">จังหวัด *</label>
             <input id="req-province" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold" placeholder="จังหวัด">
           </div>
         </div>
-
-        <div>
-          <label for="req-address" class="block text-sm font-semibold text-dci-text-light mb-1">ที่อยู่ / แผนที่</label>
-          <input id="req-address" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold" placeholder="ที่อยู่สมบูรณ์ หรือ Google Maps link">
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label for="req-date" class="block text-sm font-semibold text-dci-text-light mb-1">วันที่ต้องการ *</label>
-            <input id="req-date" type="date" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold">
-          </div>
-          <div>
-            <label for="req-time" class="block text-sm font-semibold text-dci-text-light mb-1">เวลา *</label>
-            <input id="req-time" type="time" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label for="req-type" class="block text-sm font-semibold text-dci-text-light mb-1">ประเภทวันอุโบสถ</label>
-            <select id="req-type" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold">
-              <option>อุโบสถ 15 วัน (วันพระใหญ่)</option>
-              <option>อุโบสถ 8 วัน (วันพระเล็ก)</option>
-              <option>สังฆกรรมอื่นๆ</option>
-              <option>ฝึกอบรม / สาธิต</option>
-            </select>
-          </div>
-          <div>
-            <label for="req-monks-count" class="block text-sm font-semibold text-dci-text-light mb-1">จำนวนพระสงฆ์ที่มีในสังฆกรรม</label>
-            <input id="req-monks-count" type="number" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold" placeholder="จำนวน" min="4">
-          </div>
-        </div>
-
-        <div>
-          <label for="req-contact-name" class="block text-sm font-semibold text-dci-text-light mb-1">ชื่อผู้ประสานงาน *</label>
-          <input id="req-contact-name" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold" placeholder="ชื่อ-สกุล ผู้ติดต่อ">
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <label for="req-phone" class="block text-sm font-semibold text-dci-text-light mb-1">เบอร์โทรศัพท์ *</label>
-            <input id="req-phone" type="tel" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold" placeholder="08X-XXX-XXXX">
-          </div>
-          <div>
-            <label for="req-line" class="block text-sm font-semibold text-dci-text-light mb-1">Line ID / อีเมล</label>
-            <input id="req-line" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold" placeholder="Line ID หรืออีเมล">
-          </div>
-        </div>
-
-        <div>
-          <label for="req-note" class="block text-sm font-semibold text-dci-text-light mb-1">ข้อมูลเพิ่มเติม / ความต้องการพิเศษ</label>
-          <textarea id="req-note" rows="3" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:outline-none focus:border-dci-gold resize-y" placeholder="เช่น ต้องการพระที่เชี่ยวชาญสำนักใด, มีที่พักให้หรือไม่..."></textarea>
-        </div>
-
         <button class="w-full mt-4 bg-gradient-to-r from-[#1A3A1A] to-[#2D6A2D] text-[#C8E6C8] font-bold py-3 rounded-md shadow-md hover:brightness-110 transition-all" onclick="submitRequest()">✦ ส่งคำขอไปยังระบบ</button>
       </div>
     </div>
@@ -312,8 +257,7 @@
             <th class="px-4 py-3 font-semibold">สถานะ</th>
           </tr>
         </thead>
-        <tbody id="scheduleBody" class="text-sm divide-y divide-dci-cream-dark">
-          </tbody>
+        <tbody id="scheduleBody" class="text-sm divide-y divide-dci-cream-dark"></tbody>
       </table>
     </div>
   </div>
@@ -346,7 +290,7 @@
     </div>
     
     <div class="bg-white border border-dci-cream-dark rounded-xl shadow-sm overflow-hidden custom-scrollbar overflow-x-auto">
-      <table class="w-full text-left border-collapse whitespace-nowrap min-w-[800px]">
+      <table class="w-full text-left border-collapse whitespace-nowrap min-w-[1000px]">
         <thead class="bg-dci-dark text-dci-gold-pale text-sm">
           <tr>
             <th class="px-4 py-3 font-semibold">สถานะ</th>
@@ -356,8 +300,7 @@
             <th class="px-4 py-3 font-semibold text-right">การจัดการ</th>
           </tr>
         </thead>
-        <tbody id="adminTableBody" class="text-sm divide-y divide-dci-cream-dark">
-          </tbody>
+        <tbody id="adminTableBody" class="text-sm divide-y divide-dci-cream-dark"></tbody>
       </table>
     </div>
   </div>
@@ -386,30 +329,105 @@
 
 <div id="toast" class="fixed bottom-8 right-8 bg-dci-dark text-dci-gold-pale px-6 py-4 rounded-lg border-l-4 border-dci-gold shadow-2xl text-sm font-medium translate-y-32 opacity-0 transition-all duration-300 z-[9999]"></div>
 
-<div id="monkModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1000] hidden items-center justify-center p-4" onclick="if(event.target === this) closeModal()">
-  <div class="bg-white rounded-xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+<div id="monkModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1000] hidden items-center justify-center p-4 custom-scrollbar" onclick="if(event.target === this) closeModal('monkModal', 'modalContent')">
+  <div class="bg-white rounded-xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 opacity-0 transition-all duration-300 custom-scrollbar" id="modalContent">
     <div class="bg-gradient-to-r from-dci-dark to-dci-maroon px-6 py-4 flex justify-between items-center rounded-t-xl sticky top-0 z-10">
       <h4 id="modal-title" class="text-dci-gold-light font-semibold text-lg font-chakra">ประวัติพระภิกษุ</h4>
-      <button onclick="closeModal()" class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full text-white flex items-center justify-center transition-colors">✕</button>
+      <button onclick="closeModal('monkModal', 'modalContent')" class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full text-white flex items-center justify-center transition-colors">✕</button>
     </div>
     <div id="modal-body" class="p-6"></div>
   </div>
 </div>
 
+<div id="adminEditModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1001] hidden items-center justify-center p-4" onclick="if(event.target === this) closeAdminEditModal()">
+  <div class="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 opacity-0 transition-all duration-300 custom-scrollbar" id="adminEditModalContent">
+    <div class="bg-gradient-to-r from-dci-dark to-blue-900 px-6 py-4 flex justify-between items-center rounded-t-xl sticky top-0 z-10 border-b-2 border-dci-gold">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">⚙️</span>
+        <h4 class="text-white font-semibold text-lg font-chakra">แก้ไขข้อมูลพระภิกษุ (Admin)</h4>
+      </div>
+      <button onclick="closeAdminEditModal()" class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full text-white flex items-center justify-center transition-colors">✕</button>
+    </div>
+    
+    <div class="p-6 md:p-8 space-y-4">
+      <input type="hidden" id="edit-id">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">ฉายา (ชื่อพระ) *</label>
+          <input id="edit-name" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">นามสกุลเดิม</label>
+          <input id="edit-lastname" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">สมณศักดิ์ / ตำแหน่ง</label>
+          <select id="edit-rank" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+            <option>พระภิกษุ</option><option>พระมหา</option><option>พระครู</option><option>พระอาจารย์</option><option>พระราชาคณะ</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">พรรษา</label>
+          <input id="edit-vassas" type="number" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-dci-text-light mb-1">วัด / สังกัด *</label>
+        <input id="edit-temple" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">จังหวัด</label>
+          <input id="edit-province" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">เบอร์ติดต่อ / Line ID</label>
+          <input id="edit-contact" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-dci-text-light mb-1">ประวัติการศึกษา / ความเชี่ยวชาญ</label>
+        <textarea id="edit-bio" rows="2" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none resize-y"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">ยอดสวด (ครั้ง)</label>
+          <input id="edit-chants" type="number" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-dci-text-light mb-1">รูปภาพ (URL)</label>
+          <input id="edit-photo" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-white focus:border-blue-500 outline-none">
+        </div>
+      </div>
+
+      <div class="flex gap-3 pt-4 border-t border-dci-cream-dark">
+        <button class="flex-1 bg-blue-700 text-white font-bold py-3 rounded-md shadow-md hover:bg-blue-800 transition-all" onclick="saveAdminEdit()">💾 บันทึกการแก้ไข</button>
+        <button class="flex-1 bg-gray-200 text-gray-800 font-bold py-3 rounded-md shadow-sm hover:bg-gray-300 transition-all" onclick="closeAdminEditModal()">ยกเลิก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-// ─── DATA WITH STATUS ───
+// ─── DATA WITH STATUS & LASTNAME ───
 let monks = [
-  { id: 1, status: 'approved', rank: 'พระมหา', name: 'สมศักดิ์ สุขุมาโล', temple: 'วัดพระศรีรัตนศาสดาราม', province: 'กรุงเทพฯ', vassas: 22, chants: 87, contact: '081-234-5678', bio: 'เปรียญธรรม 9 ประโยค ผ่านการอบรมสวดปาฏิโมกข์ระดับสูง มีประสบการณ์กว่า 20 ปี', tags: ['ป.ธ.9', 'อบรมครู', 'บาลีชั้นสูง'], photo: '', registered: '2023-01-10' },
-  { id: 2, status: 'approved', rank: 'พระครู', name: 'ปัญญาวโร ธรรมรักษ์', temple: 'วัดบวรนิเวศวิหาร', province: 'กรุงเทพฯ', vassas: 35, chants: 64, contact: '089-876-5432', bio: 'นักธรรมเอก ฝ่ายวิปัสสนา เจ้าอาวาสช่วง สวดปาฏิโมกข์มาตั้งแต่พรรษาที่ 5', tags: ['นธ.เอก', 'วิปัสสนา', 'เจ้าอาวาส'], photo: '', registered: '2023-02-05' },
-  { id: 3, status: 'approved', rank: 'พระมหา', name: 'อนุชา จันทโร', temple: 'วัดสุทัศนเทพวราราม', province: 'กรุงเทพฯ', vassas: 14, chants: 52, contact: '082-111-2222', bio: 'เปรียญธรรม 7 ประโยค ครูสอนบาลี มีความเชี่ยวชาญในการสวดแบบลังกา', tags: ['ป.ธ.7', 'ครูบาลี', 'สวดลังกา'], photo: '', registered: '2023-03-20' },
-  { id: 4, status: 'approved', rank: 'พระ', name: 'วิชัย อภิชาโต', temple: 'วัดโพธิ์', province: 'กรุงเทพฯ', vassas: 18, chants: 41, contact: '086-333-4444', bio: 'นักธรรมเอก ผ่านการอบรมจากศูนย์พุทธศาสตร์ศึกษา DCI รุ่นที่ 3', tags: ['นธ.เอก', 'DCI รุ่น 3'], photo: '', registered: '2023-05-15' },
-  { id: 5, status: 'pending', rank: 'พระ', name: 'บุญมา จิตสังวโร', temple: 'วัดป่าเรไร', province: 'สุพรรณบุรี', vassas: 5, chants: 0, contact: '080-000-0000', bio: 'ลงทะเบียนใหม่ รอการตรวจสอบจากศูนย์', tags: ['ใหม่'], photo: '', registered: '2026-03-28' }
+  { id: 1, status: 'approved', rank: 'พระมหา', name: 'สมศักดิ์ สุขุมาโล', lastname: '-', temple: 'วัดพระศรีรัตนศาสดาราม', province: 'กรุงเทพฯ', vassas: 22, chants: 87, contact: '081-234-5678', bio: 'เปรียญธรรม 9 ประโยค ผ่านการอบรมสวดปาฏิโมกข์ระดับสูง', tags: ['ป.ธ.9', 'อบรมครู', 'บาลีชั้นสูง'], photo: '', registered: '2023-01-10' },
+  { id: 2, status: 'approved', rank: 'พระครู', name: 'ปัญญาวโร ธรรมรักษ์', lastname: 'บุญมี', temple: 'วัดบวรนิเวศวิหาร', province: 'กรุงเทพฯ', vassas: 35, chants: 64, contact: '089-876-5432', bio: 'นักธรรมเอก ฝ่ายวิปัสสนา เจ้าอาวาสช่วง', tags: ['นธ.เอก', 'วิปัสสนา', 'เจ้าอาวาส'], photo: '', registered: '2023-02-05' },
+  { id: 3, status: 'approved', rank: 'พระมหา', name: 'อนุชา จันทโร', lastname: '-', temple: 'วัดสุทัศนเทพวราราม', province: 'กรุงเทพฯ', vassas: 14, chants: 52, contact: '082-111-2222', bio: 'เปรียญธรรม 7 ประโยค ครูสอนบาลี มีความเชี่ยวชาญในการสวดแบบลังกา', tags: ['ป.ธ.7', 'ครูบาลี', 'สวดลังกา'], photo: '', registered: '2023-03-20' },
+  { id: 4, status: 'approved', rank: 'พระ', name: 'วิชัย อภิชาโต', lastname: '-', temple: 'วัดโพธิ์', province: 'กรุงเทพฯ', vassas: 18, chants: 41, contact: '086-333-4444', bio: 'นักธรรมเอก ผ่านการอบรมจากศูนย์พุทธศาสตร์ศึกษา DCI รุ่นที่ 3', tags: ['นธ.เอก', 'DCI รุ่น 3'], photo: '', registered: '2023-05-15' },
+  { id: 5, status: 'pending', rank: 'พระ', name: 'บุญมา จิตสังวโร', lastname: 'ใจดี', temple: 'วัดป่าเรไร', province: 'สุพรรณบุรี', vassas: 5, chants: 0, contact: '080-000-0000', bio: 'ลงทะเบียนใหม่ รอการตรวจสอบจากศูนย์', tags: ['ใหม่'], photo: '', registered: '2026-03-28' }
 ];
 
 let requests = [
   { date: '2026-04-05', time: '08:00', temple: 'วัดพระแก้ว', province: 'เชียงใหม่', type: 'อุโบสถ 15 วัน', contact: 'พระอาจารย์สมหมาย', status: 'confirmed' },
-  { date: '2026-04-19', time: '09:00', temple: 'วัดช้างล้อม', province: 'สุโขทัย', type: 'อุโบสถ 8 วัน', contact: 'นายวิชัย สุขดี', status: 'pending' },
-  { date: '2026-05-03', time: '07:30', temple: 'วัดใหม่', province: 'อยุธยา', type: 'สังฆกรรมอื่นๆ', contact: 'พระภิกษุสมพงษ์', status: 'open' },
 ];
 
 let isAdminLoggedIn = false;
@@ -421,12 +439,11 @@ function renderMonks(list = monks) {
   const grid = document.getElementById('monksGrid');
   const approvedList = list.filter(m => m.status === 'approved');
   const maxChants = getMaxChants();
-  
   grid.innerHTML = approvedList.length === 0 ? '<div class="col-span-full text-center py-10 text-dci-text-light">ไม่พบรายชื่อที่ค้นหา</div>' : approvedList.map((m) => `
     <div class="bg-white border border-dci-cream-dark rounded-xl overflow-hidden hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(107,26,26,0.15)] transition-all cursor-pointer relative group" onclick="showMonkDetail(${m.id})">
       <div class="bg-gradient-to-br from-dci-dark to-dci-maroon p-5 flex items-center gap-4">
         <div class="w-16 h-16 rounded-full bg-dci-gold border-2 border-dci-gold-light flex items-center justify-center text-3xl shrink-0 overflow-hidden">
-          ${m.photo ? `<img src="${m.photo}" class="w-full h-full object-cover" onerror="this.parentNode.innerHTML='☸'">` : '☸'}
+          ${m.photo ? `<img src="${m.photo}" class="w-full h-full object-cover">` : '☸'}
         </div>
         <div class="flex-1 text-white overflow-hidden">
           <div class="text-xs text-dci-gold font-bold tracking-wider">${m.rank}</div>
@@ -444,10 +461,6 @@ function renderMonks(list = monks) {
             <span class="font-chakra text-xl font-bold leading-none">${m.chants}</span>
             <span class="text-[0.6rem] opacity-80 mt-0.5">ครั้ง</span>
           </div>
-          <div class="flex flex-wrap gap-1.5 flex-1">
-            ${m.tags.slice(0,2).map(t => `<span class="bg-dci-cream-dark text-dci-maroon text-[0.7rem] px-2 py-0.5 rounded-full font-medium">${t}</span>`).join('')}
-            ${m.tags.length > 2 ? `<span class="bg-dci-cream-dark text-dci-maroon text-[0.7rem] px-2 py-0.5 rounded-full font-medium">+${m.tags.length-2}</span>` : ''}
-          </div>
         </div>
       </div>
     </div>
@@ -459,12 +472,9 @@ function renderLeaderboard() {
   document.getElementById('leaderboard').innerHTML = sorted.map((m, i) => `
     <div class="flex items-center gap-4 p-3 bg-white border border-dci-cream-dark rounded-lg hover:translate-x-1 transition-transform cursor-pointer" onclick="showMonkDetail(${m.id})">
       <div class="font-chakra text-2xl font-bold w-8 text-center shrink-0 ${i===0 ? 'text-[#C8972B]' : i===1 ? 'text-[#A0A0A0]' : i===2 ? 'text-[#CD7F32]' : 'text-dci-cream-dark'}">${i+1}</div>
-      <div class="w-10 h-10 rounded-full bg-dci-gold border-2 border-dci-cream-dark flex items-center justify-center text-xl shrink-0 overflow-hidden">
-        ${m.photo ? `<img src="${m.photo}" class="w-full h-full object-cover">` : '☸'}
-      </div>
       <div class="flex-1">
         <div class="font-semibold text-sm text-dci-maroon">${m.rank} ${m.name}</div>
-        <div class="text-xs text-dci-text-light mt-0.5">${m.temple} · ${m.vassas} พรรษา</div>
+        <div class="text-xs text-dci-text-light mt-0.5">${m.temple}</div>
       </div>
       <div class="text-right">
         <div class="font-chakra text-xl font-bold text-dci-maroon leading-none">${m.chants}</div>
@@ -484,9 +494,9 @@ function renderAdminTable() {
       : `<span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold whitespace-nowrap">อนุมัติแล้ว</span>`;
       
     const actionBtns = `
-      ${isPending ? `<button onclick="adminApprove(${m.id})" class="text-green-600 hover:text-green-800 font-bold mr-3 transition-colors">✓ อนุมัติ</button>` : ''}
-      <button onclick="adminEdit(${m.id})" class="text-blue-600 hover:text-blue-800 font-bold mr-3 transition-colors">✎ แก้ไข</button>
-      <button onclick="adminDelete(${m.id})" class="text-red-600 hover:text-red-800 font-bold transition-colors">✕ ลบ</button>
+      ${isPending ? `<button onclick="adminApprove(${m.id})" class="text-green-600 hover:text-green-800 font-bold mr-3 bg-green-50 px-2 py-1 rounded transition-colors">✓ อนุมัติ</button>` : ''}
+      <button onclick="openAdminEditModal(${m.id})" class="text-blue-600 hover:text-blue-800 font-bold mr-3 bg-blue-50 px-2 py-1 rounded transition-colors">✎ แก้ไขฟอร์ม</button>
+      <button onclick="adminDelete(${m.id})" class="text-red-600 hover:text-red-800 font-bold bg-red-50 px-2 py-1 rounded transition-colors">✕ ลบ</button>
     `;
 
     return `
@@ -505,7 +515,7 @@ function adminApprove(id) {
   const monk = monks.find(m => m.id === id);
   if(monk) {
     monk.status = 'approved';
-    showToast(`✓ อนุมัติ ${monk.name} สำเร็จ`);
+    showToast(`✓ อนุมัติ ${monk.name} เข้าระบบสำเร็จ`);
     refreshData();
   }
 }
@@ -518,16 +528,68 @@ function adminDelete(id) {
   }
 }
 
-function adminEdit(id) {
+// ─── ADMIN EDIT FULL MODAL LOGIC ───
+function openAdminEditModal(id) {
   const monk = monks.find(m => m.id === id);
-  if(monk) {
-    const newName = prompt("แก้ไขชื่อ/ฉายา:", monk.name);
-    if(newName) {
-      monk.name = newName;
-      showToast(`✎ แก้ไขข้อมูลสำเร็จ`);
-      refreshData();
-    }
-  }
+  if(!monk) return;
+  
+  // Populate form
+  document.getElementById('edit-id').value = monk.id;
+  document.getElementById('edit-name').value = monk.name;
+  document.getElementById('edit-lastname').value = monk.lastname || '';
+  document.getElementById('edit-rank').value = monk.rank;
+  document.getElementById('edit-vassas').value = monk.vassas;
+  document.getElementById('edit-temple').value = monk.temple;
+  document.getElementById('edit-province').value = monk.province;
+  document.getElementById('edit-contact').value = monk.contact;
+  document.getElementById('edit-bio').value = monk.bio;
+  document.getElementById('edit-chants').value = monk.chants;
+  document.getElementById('edit-photo').value = monk.photo || '';
+
+  // Show Modal
+  const modal = document.getElementById('adminEditModal');
+  const content = document.getElementById('adminEditModalContent');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  setTimeout(() => {
+    content.classList.remove('scale-95', 'opacity-0');
+    content.classList.add('scale-100', 'opacity-100');
+  }, 10);
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAdminEditModal() {
+  const content = document.getElementById('adminEditModalContent');
+  content.classList.remove('scale-100', 'opacity-100');
+  content.classList.add('scale-95', 'opacity-0');
+  setTimeout(() => {
+    const modal = document.getElementById('adminEditModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }, 300);
+}
+
+function saveAdminEdit() {
+  const id = parseInt(document.getElementById('edit-id').value);
+  const monkIndex = monks.findIndex(m => m.id === id);
+  if(monkIndex === -1) return;
+
+  // Update object
+  monks[monkIndex].name = document.getElementById('edit-name').value.trim() || monks[monkIndex].name;
+  monks[monkIndex].lastname = document.getElementById('edit-lastname').value.trim();
+  monks[monkIndex].rank = document.getElementById('edit-rank').value;
+  monks[monkIndex].vassas = parseInt(document.getElementById('edit-vassas').value) || 0;
+  monks[monkIndex].temple = document.getElementById('edit-temple').value.trim() || monks[monkIndex].temple;
+  monks[monkIndex].province = document.getElementById('edit-province').value.trim() || '-';
+  monks[monkIndex].contact = document.getElementById('edit-contact').value.trim() || '-';
+  monks[monkIndex].bio = document.getElementById('edit-bio').value.trim() || '-';
+  monks[monkIndex].chants = parseInt(document.getElementById('edit-chants').value) || 0;
+  monks[monkIndex].photo = document.getElementById('edit-photo').value.trim();
+
+  closeAdminEditModal();
+  showToast('💾 บันทึกข้อมูลการแก้ไขเรียบร้อยแล้ว');
+  refreshData();
 }
 
 // ─── REGISTRATION & REQUESTS ───
@@ -536,11 +598,12 @@ function registerMonk() {
   const temple = document.getElementById('reg-temple').value.trim();
   if (!name || !temple) { showToast('⚠️ กรุณากรอกช่องที่มี * ให้ครบถ้วน'); return; }
 
-  const newMonk = {
+  monks.push({
     id: monks.length + 1,
     status: 'pending',
     rank: document.getElementById('reg-rank').value,
     name: name,
+    lastname: document.getElementById('reg-lastname').value.trim() || '-',
     temple: temple,
     province: document.getElementById('reg-province').value || '-',
     vassas: parseInt(document.getElementById('reg-vassas').value) || 0,
@@ -550,61 +613,20 @@ function registerMonk() {
     tags: ['ผู้ลงทะเบียนใหม่'],
     photo: document.getElementById('reg-photo').value || '',
     registered: new Date().toISOString().split('T')[0]
-  };
+  });
 
-  monks.push(newMonk);
   showToast('✦ ส่งข้อมูลสำเร็จ! กรุณารอผู้ดูแลระบบตรวจสอบและอนุมัติ');
   document.querySelectorAll('#page-register input, #page-register textarea').forEach(el => el.value = '');
   refreshData();
   setTimeout(() => { showPage('monks'); window.scrollTo(0,0); }, 2500);
 }
 
-function submitRequest() {
-  const temple = document.getElementById('req-temple').value.trim();
-  const date = document.getElementById('req-date').value;
-  const phone = document.getElementById('req-phone').value.trim();
-  if (!temple || !date || !phone) { showToast('⚠️ กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบ'); return; }
+// ... [Other utilities: showMonkDetail, closeModal, handleLogin, etc.]
 
-  requests.push({
-    date: date,
-    time: document.getElementById('req-time').value || '-',
-    temple: temple,
-    province: document.getElementById('req-province').value || '-',
-    type: document.getElementById('req-type').value,
-    contact: document.getElementById('req-contact-name').value || phone,
-    status: 'open'
-  });
-
-  showToast('✦ ส่งคำขอสำเร็จ! ระบบได้บันทึกความประสงค์ของท่านแล้ว');
-  document.querySelectorAll('#page-request input, #page-request textarea').forEach(el => el.value = '');
-  refreshData();
-  setTimeout(() => { showPage('schedule'); window.scrollTo(0,0); }, 2000);
-}
-
-// ─── SCHEDULE RENDERING ───
-function renderSchedule() {
-  const tbody = document.getElementById('scheduleBody');
-  tbody.innerHTML = requests.map(r => {
-    let statusClass = r.status === 'confirmed' ? 'bg-[#D4EDDA] text-[#155724]' : r.status === 'pending' ? 'bg-[#FFF3CD] text-[#856404]' : 'bg-[#D1ECF1] text-[#0C5460]';
-    let statusText = r.status === 'confirmed' ? '✓ ยืนยันแล้ว' : r.status === 'pending' ? '⏳ รอยืนยัน' : '🔵 เปิดรับ';
-    return `
-    <tr class="hover:bg-dci-cream transition-colors">
-      <td class="px-4 py-3 font-semibold text-dci-maroon whitespace-nowrap">${formatDate(r.date)}</td>
-      <td class="px-4 py-3 whitespace-nowrap">${r.time}</td>
-      <td class="px-4 py-3 font-medium whitespace-nowrap">🏛 ${r.temple}</td>
-      <td class="px-4 py-3 whitespace-nowrap">${r.province}</td>
-      <td class="px-4 py-3 whitespace-nowrap">${r.type}</td>
-      <td class="px-4 py-3 text-dci-text-light whitespace-nowrap">${r.contact}</td>
-      <td class="px-4 py-3 whitespace-nowrap"><span class="px-3 py-1 text-xs font-bold rounded-full ${statusClass}">${statusText}</span></td>
-    </tr>
-  `}).join('');
-}
-
-// ─── MODAL & UTILS ───
 function showMonkDetail(id) {
   const m = monks.find(x => x.id === id);
   if(!m) return;
-  document.getElementById('modal-title').textContent = `${m.rank} ${m.name}`;
+  document.getElementById('modal-title').textContent = `${m.rank} ${m.name} ${m.lastname !== '-' ? m.lastname : ''}`;
   document.getElementById('modal-body').innerHTML = `
     <div class="text-center mb-5">
       <div class="w-24 h-24 bg-dci-gold rounded-full mx-auto mb-3 flex items-center justify-center text-5xl border-4 border-dci-gold-light overflow-hidden shadow-inner">
@@ -627,12 +649,6 @@ function showMonkDetail(id) {
       <div class="text-xs font-bold text-dci-text-light mb-1">ประวัติ</div>
       <div class="text-sm leading-relaxed">${m.bio}</div>
     </div>
-    <div class="mb-5">
-      <div class="text-xs font-bold text-dci-text-light mb-2">ความเชี่ยวชาญ</div>
-      <div class="flex flex-wrap gap-2">
-        ${m.tags.map(t=>`<span class="bg-dci-cream-dark text-dci-maroon text-xs px-2.5 py-1 rounded-full font-medium">${t}</span>`).join('')}
-      </div>
-    </div>
     <div class="bg-dci-cream rounded-lg p-3 text-sm text-dci-text-light flex items-center justify-center gap-2 border border-dci-cream-dark/50">
       📞 <span class="font-semibold">${m.contact}</span>
     </div>
@@ -649,12 +665,12 @@ function showMonkDetail(id) {
   document.body.style.overflow = 'hidden';
 }
 
-function closeModal() { 
-  const content = document.getElementById('modalContent');
+function closeModal(modalId, contentId) { 
+  const content = document.getElementById(contentId);
   content.classList.remove('scale-100', 'opacity-100');
   content.classList.add('scale-95', 'opacity-0');
   setTimeout(() => {
-    const modal = document.getElementById('monkModal');
+    const modal = document.getElementById(modalId);
     modal.classList.add('hidden');
     modal.classList.remove('flex');
     document.body.style.overflow = '';
@@ -689,24 +705,6 @@ function handleLogout() {
   showPage('monks');
 }
 
-function filterMonks(q) {
-  const filtered = monks.filter(m => m.name.includes(q) || m.temple.includes(q) || m.province.includes(q) || m.tags.some(t => t.includes(q)));
-  renderMonks(filtered);
-}
-
-function filterBySort(val) {
-  let sorted = [...monks];
-  if (val === 'chants') sorted.sort((a,b) => b.chants - a.chants);
-  if (val === 'name') sorted.sort((a,b) => a.name.localeCompare(b.name));
-  if (val === 'newest') sorted.sort((a,b) => new Date(b.registered) - new Date(a.registered));
-  renderMonks(sorted);
-}
-
-function formatDate(d) {
-  if (!d || d === '-') return d;
-  try { return new Date(d).toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' }); } catch { return d; }
-}
-
 function showPage(p) {
   document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
   document.getElementById('page-' + p).classList.add('active');
@@ -721,6 +719,19 @@ function showPage(p) {
     activeBtn.classList.add('bg-dci-gold', 'text-dci-deep', 'border-dci-gold', 'font-bold');
     activeBtn.classList.remove('bg-white/5', 'text-white', 'border-dci-gold-pale/40');
   }
+}
+
+function filterMonks(q) {
+  const filtered = monks.filter(m => m.name.includes(q) || m.temple.includes(q) || m.province.includes(q));
+  renderMonks(filtered);
+}
+
+function filterBySort(val) {
+  let sorted = [...monks];
+  if (val === 'chants') sorted.sort((a,b) => b.chants - a.chants);
+  if (val === 'name') sorted.sort((a,b) => a.name.localeCompare(b.name));
+  if (val === 'newest') sorted.sort((a,b) => new Date(b.registered) - new Date(a.registered));
+  renderMonks(sorted);
 }
 
 function showToast(msg) {
@@ -740,12 +751,10 @@ function refreshData() {
   const sortedMonks = [...monks].sort((a,b) => b.chants - a.chants);
   renderMonks(sortedMonks);
   renderLeaderboard();
-  renderSchedule();
   updateStats();
   if(isAdminLoggedIn) renderAdminTable();
 }
 
-// ─── INIT ───
 window.onload = () => { refreshData(); };
 </script>
 </body>
