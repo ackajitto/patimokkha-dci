@@ -67,13 +67,17 @@
   </div>
 </header>
 
-<section class="bg-gradient-to-b from-dci-deep to-dci-dark pt-12 pb-8 px-4 text-center relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(200,151,43,0.15)_0%,_transparent_70%)]"></div>
+<section class="relative pt-16 pb-14 px-4 text-center overflow-hidden bg-dci-deep">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity" style="background-image: url('https://kalyanamitra.org/th/images/dou/Tripitaka%20First/6-7-66-LB.jpg');"></div>
+  
+  <div class="absolute inset-0 bg-gradient-to-b from-dci-deep/90 via-dci-dark/70 to-dci-dark/95"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(200,151,43,0.2)_0%,_transparent_70%)]"></div>
+  
   <div class="relative z-10 max-w-4xl mx-auto">
-    <span class="text-5xl block mb-3">🪔</span>
-    <h2 class="font-chakra text-dci-gold-light text-3xl md:text-4xl font-semibold tracking-widest drop-shadow-[0_0_15px_rgba(200,151,43,0.4)]">ปาฏิโมกข์</h2>
-    <p class="text-white/60 mt-3 text-base">ทะเบียนรายชื่อพระภิกษุผู้ทรงพระปาฏิโมกข์ ศูนย์พุทธศาสตร์ศึกษา DCI</p>
-    <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-dci-gold to-transparent mx-auto mt-6"></div>
+    <span class="text-5xl block mb-3 drop-shadow-lg">🪔</span>
+    <h2 class="font-chakra text-dci-gold-light text-3xl md:text-5xl font-semibold tracking-widest drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]">ปาฏิโมกข์</h2>
+    <p class="text-white/90 mt-4 text-base md:text-lg drop-shadow-md font-medium">ทะเบียนรายชื่อพระภิกษุผู้ทรงพระปาฏิโมกข์ ศูนย์พุทธศาสตร์ศึกษา DCI</p>
+    <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-dci-gold to-transparent mx-auto mt-6 shadow-sm"></div>
   </div>
 </section>
 
@@ -549,7 +553,6 @@ let monks = [
   { id: 5, status: 'pending', rank: 'พระ', name: 'บุญมา จิตสังวโร', lastname: 'ใจดี', temple: 'วัดป่าเรไร', province: 'สุพรรณบุรี', vassas: 5, chants: 0, contact: '080-000-0000', bio: 'ลงทะเบียนใหม่ รอการตรวจสอบจากศูนย์', tags: ['ผู้ลงทะเบียนใหม่'], photo: '', registered: '2026-03-28' }
 ];
 
-// เก็บข้อมูลทั้งหมดไว้ (รวมถึง pending)
 let requests = [
   { id: 1, date: '2026-04-05', time: '08:00', temple: 'วัดพระแก้ว', province: 'เชียงใหม่', address: '-', type: 'อุโบสถ 15 วัน', monksCount: 4, contact: 'พระอาจารย์สมหมาย', phone: '0811111111', line: '-', note: '-', status: 'confirmed', assignedMonkId: 1 },
   { id: 2, date: '2026-04-19', time: '09:00', temple: 'วัดช้างล้อม', province: 'สุโขทัย', address: '-', type: 'อุโบสถ 8 วัน', monksCount: 4, contact: 'นายวิชัย สุขดี', phone: '0822222222', line: '-', note: 'ต้องการพระสวดจังหวะเนิบช้า', status: 'pending', assignedMonkId: null }
@@ -623,18 +626,15 @@ function renderSchedule() {
   // โชว์รายการนัดหมายทั้งหมด (ทั้งรอจัดสรร และจัดสรรแล้ว)
   tbody.innerHTML = requests.length === 0 ? '<tr><td colspan="6" class="text-center py-8 text-dci-text-light">ยังไม่มีตารางนัดหมายในระบบ</td></tr>' : requests.map(r => {
     
-    // ตรวจสอบว่าแอดมินจัดสรรหรือยัง
     const monk = monks.find(m => m.id == r.assignedMonkId);
     let monkDisplay = '';
 
     if (r.status === 'confirmed' && monk) {
-      // แอดมินจัดสรรแล้ว -> โชว์ชื่อและเบอร์โทรทันที
       monkDisplay = `
         <span class="font-bold text-[#2D6A2D]">✓ ${monk.rank} ${monk.name}</span><br>
         <span class="text-xs font-semibold text-dci-text-light mt-1 inline-block">📞 ${monk.contact}</span>
       `;
     } else {
-      // ยังไม่ได้รับการจัดสรร -> โชว์ข้อมูลทิ้งไว้ก่อน
       monkDisplay = `
         <span class="text-yellow-600 font-semibold bg-yellow-50 px-2 py-1 rounded">⏳ รอการจัดสรร</span>
       `;
