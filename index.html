@@ -118,18 +118,17 @@
         </div>
     </div>
 
-    <div class="mb-12 flex flex-col items-center">
-      <div class="w-full max-w-[300px] aspect-[9/16] rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(200,151,43,0.3)] border-2 border-dci-gold bg-black relative">
+    <div class="mb-12 flex justify-center">
+      <div class="w-full max-w-sm aspect-[9/16] rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] border-[3px] border-dci-gold/50 bg-black">
         <iframe 
-          class="w-full h-full absolute top-0 left-0" 
-          src="https://www.youtube.com/embed/1e4Wt2_Abe4?autoplay=1&mute=1&loop=1&playlist=1e4Wt2_Abe4&controls=0&modestbranding=1" 
+          class="w-full h-full" 
+          src="https://www.youtube.com/embed/1e4Wt2_Abe4" 
           title="YouTube video player" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowfullscreen>
         </iframe>
       </div>
-      <p class="text-xs text-dci-text-light mt-3">* วิดีโอเล่นอัตโนมัติแบบปิดเสียง (สามารถกดที่วิดีโอเพื่อเปิดเสียงได้)</p>
     </div>
 
     <div class="flex items-center gap-3 mb-8">
@@ -139,6 +138,7 @@
 
     <div class="flex flex-col md:flex-row gap-3 mb-8">
       <input type="text" name="search_monks" autocomplete="off" spellcheck="false" placeholder="ค้นหาชื่อ, วัด, ความเชี่ยวชาญ..." class="flex-1 px-4 py-2 border border-dci-cream-dark rounded-md focus:outline-none focus:border-dci-gold focus:ring-2 focus:ring-dci-gold/20 bg-white" oninput="filterMonks(this.value)">
+      
       <select class="px-4 py-2 border border-dci-cream-dark rounded-md bg-white text-dci-text focus:outline-none focus:border-dci-gold cursor-pointer" onchange="filterBySort(this.value)">
         <option value="chants">เรียงตามยอดสวดสูงสุด</option>
         <option value="name">เรียงตามชื่อ (ก-ฮ)</option>
