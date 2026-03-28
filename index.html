@@ -49,7 +49,11 @@
 
 <header class="bg-gradient-to-br from-dci-deep via-dci-dark to-dci-maroon border-b-4 border-dci-gold shadow-lg relative z-50">
   <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col items-center text-center gap-3">
-    <div class="w-16 h-16 bg-dci-gold rounded-full flex items-center justify-center text-3xl text-dci-deep shadow-[0_0_20px_rgba(200,151,43,0.5)] shrink-0">☸</div>
+    
+    <div class="w-16 h-16 bg-dci-gold rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(200,151,43,0.5)] shrink-0 overflow-hidden">
+      <img src="https://images.dmc.tv/www/images/index/scoop/rain_retreat/dhammajak.jpg" alt="DCI Logo" class="w-full h-full object-cover rounded-full">
+    </div>
+    
     <div>
       <h1 class="font-chakra text-white text-xl md:text-2xl font-bold tracking-wide drop-shadow-md">ผู้สวดปาฏิโมกข์ · ศูนย์พุทธศาสตร์ศึกษา DCI</h1>
       <p class="text-dci-gold-pale text-sm mt-1">Dhamma & Buddhist Studies Center · ทะเบียนพระสวดปาฏิโมกข์</p>
@@ -885,7 +889,7 @@ function submitRequest() {
     date: date, 
     time: document.getElementById('req-time').value || '-', 
     temple: temple, 
-    province: document.getElementById('req-province').value.trim() || '-', 
+    province: document.getElementById('reg-province').value.trim() || '-', 
     address: document.getElementById('req-address').value.trim() || '-', 
     type: document.getElementById('req-type').value, 
     monksCount: parseInt(document.getElementById('req-monks-count').value) || 4, 
