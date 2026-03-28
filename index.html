@@ -67,17 +67,16 @@
   </div>
 </header>
 
-<section class="relative pt-16 pb-14 px-4 text-center overflow-hidden bg-dci-deep">
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity" style="background-image: url('https://kalyanamitra.org/th/images/dou/Tripitaka%20First/6-7-66-LB.jpg');"></div>
+<section class="relative flex flex-col justify-end min-h-[450px] md:min-h-[500px] pt-32 pb-10 px-4 text-center overflow-hidden bg-dci-dark">
+  <div class="absolute inset-0 bg-[url('https://kalyanamitra.org/th/images/dou/Tripitaka%20First/6-7-66-LB.jpg')] bg-cover bg-top opacity-85"></div>
   
-  <div class="absolute inset-0 bg-gradient-to-b from-dci-deep/90 via-dci-dark/70 to-dci-dark/95"></div>
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(200,151,43,0.2)_0%,_transparent_70%)]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-dci-deep/10 via-dci-deep/70 to-dci-dark"></div>
   
-  <div class="relative z-10 max-w-4xl mx-auto">
-    <span class="text-5xl block mb-3 drop-shadow-lg">🪔</span>
-    <h2 class="font-chakra text-dci-gold-light text-3xl md:text-5xl font-semibold tracking-widest drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]">ปาฏิโมกข์</h2>
-    <p class="text-white/90 mt-4 text-base md:text-lg drop-shadow-md font-medium">ทะเบียนรายชื่อพระภิกษุผู้ทรงพระปาฏิโมกข์ ศูนย์พุทธศาสตร์ศึกษา DCI</p>
-    <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-dci-gold to-transparent mx-auto mt-6 shadow-sm"></div>
+  <div class="relative z-10 max-w-4xl mx-auto w-full mt-auto">
+    <span class="text-5xl block mb-3 drop-shadow-2xl">🪔</span>
+    <h2 class="font-chakra text-dci-gold-light text-4xl md:text-5xl font-bold tracking-widest drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)]">ปาฏิโมกข์</h2>
+    <p class="text-dci-gold-pale mt-3 text-base md:text-lg drop-shadow-md font-medium">ทะเบียนรายชื่อพระภิกษุผู้ทรงพระปาฏิโมกข์ ศูนย์พุทธศาสตร์ศึกษา DCI</p>
+    <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-dci-gold to-transparent mx-auto mt-6 shadow-lg"></div>
   </div>
 </section>
 
@@ -623,20 +622,23 @@ function renderLeaderboard() {
 
 function renderSchedule() {
   const tbody = document.getElementById('scheduleBody');
-  // โชว์รายการนัดหมายทั้งหมด (ทั้งรอจัดสรร และจัดสรรแล้ว)
+  // Show ALL requests (both pending and confirmed)
   tbody.innerHTML = requests.length === 0 ? '<tr><td colspan="6" class="text-center py-8 text-dci-text-light">ยังไม่มีตารางนัดหมายในระบบ</td></tr>' : requests.map(r => {
     
+    // Check if admin has assigned a monk
     const monk = monks.find(m => m.id == r.assignedMonkId);
     let monkDisplay = '';
 
     if (r.status === 'confirmed' && monk) {
+      // Assigned -> Show name and phone
       monkDisplay = `
         <span class="font-bold text-[#2D6A2D]">✓ ${monk.rank} ${monk.name}</span><br>
         <span class="text-xs font-semibold text-dci-text-light mt-1 inline-block">📞 ${monk.contact}</span>
       `;
     } else {
+      // Not assigned -> Show pending status
       monkDisplay = `
-        <span class="text-yellow-600 font-semibold bg-yellow-50 px-2 py-1 rounded">⏳ รอการจัดสรร</span>
+        <span class="text-yellow-700 font-semibold bg-yellow-50 border border-yellow-200 px-2 py-1 rounded text-sm shadow-sm">⏳ รอการจัดสรร</span>
       `;
     }
 
