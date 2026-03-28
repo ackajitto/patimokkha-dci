@@ -104,6 +104,16 @@
 <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-10">
 
   <div id="page-monks" class="page active">
+    
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <h3 class="font-chakra text-xl font-semibold text-dci-maroon">🏆 อันดับยอดสวดสูงสุด 10 อันดับ</h3>
+        <div class="flex-1 h-px bg-gradient-to-r from-dci-gold to-transparent"></div>
+      </div>
+      <div id="leaderboard" class="flex flex-col gap-2">
+        </div>
+    </div>
+
     <div class="flex items-center gap-3 mb-8">
       <h3 class="font-chakra text-xl font-semibold text-dci-maroon">☸ รายชื่อพระภิกษุผู้สวดปาฏิโมกข์ (อนุมัติแล้ว)</h3>
       <div class="flex-1 h-px bg-gradient-to-r from-dci-gold to-transparent"></div>
@@ -121,14 +131,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16" id="monksGrid">
       </div>
 
-    <div>
-      <div class="flex items-center gap-3 mb-6">
-        <h3 class="font-chakra text-xl font-semibold text-dci-maroon">🏆 อันดับยอดสวดสูงสุด</h3>
-        <div class="flex-1 h-px bg-gradient-to-r from-dci-gold to-transparent"></div>
-      </div>
-      <div id="leaderboard" class="flex flex-col gap-2">
-        </div>
-    </div>
   </div>
 
   <div id="page-register" class="page">
@@ -601,7 +603,7 @@ function renderMonks(list = monks) {
 }
 
 function renderLeaderboard() {
-  const sorted = [...monks].filter(m=>m.status==='approved').sort((a,b) => b.chants - a.chants).slice(0,5);
+  const sorted = [...monks].filter(m=>m.status==='approved').sort((a,b) => b.chants - a.chants).slice(0,10);
   document.getElementById('leaderboard').innerHTML = sorted.map((m, i) => `
     <div class="flex items-center gap-4 p-3 bg-white border border-dci-cream-dark rounded-lg hover:translate-x-1 transition-transform cursor-pointer" onclick="showMonkDetail(${m.id})">
       <div class="font-chakra text-2xl font-bold w-8 text-center shrink-0 ${i===0 ? 'text-[#C8972B]' : i===1 ? 'text-[#A0A0A0]' : i===2 ? 'text-[#CD7F32]' : 'text-dci-cream-dark'}">${i+1}</div>
