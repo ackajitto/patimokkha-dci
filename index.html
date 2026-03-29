@@ -43,6 +43,12 @@
   .custom-scrollbar::-webkit-scrollbar-track { background: #FAF3E0; border-radius: 4px; }
   .custom-scrollbar::-webkit-scrollbar-thumb { background: #EDE0C4; border-radius: 4px; }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #C8972B; }
+  
+  /* CSS สำหรับซ่อนไอคอนกากบาท (Clear button) อัตโนมัติที่มากับ type="search" ของ Chrome */
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration { display: none; }
 </style>
 </head>
 <body class="bg-dci-cream text-dci-text min-h-screen flex flex-col">
@@ -137,7 +143,7 @@
     </div>
 
     <div class="flex flex-col md:flex-row gap-3 mb-8">
-      <input type="text" name="search_monks" autocomplete="off" spellcheck="false" placeholder="ค้นหาชื่อ, วัด, ความเชี่ยวชาญ..." class="flex-1 px-4 py-2 border border-dci-cream-dark rounded-md focus:outline-none focus:border-dci-gold focus:ring-2 focus:ring-dci-gold/20 bg-white" oninput="filterMonks(this.value)">
+      <input type="search" name="search_monks_query" autocomplete="nope" spellcheck="false" placeholder="ค้นหาชื่อ, วัด, ความเชี่ยวชาญ..." class="flex-1 px-4 py-2 border border-dci-cream-dark rounded-md focus:outline-none focus:border-dci-gold focus:ring-2 focus:ring-dci-gold/20 bg-white" oninput="filterMonks(this.value)">
       
       <select class="px-4 py-2 border border-dci-cream-dark rounded-md bg-white text-dci-text focus:outline-none focus:border-dci-gold cursor-pointer" onchange="filterBySort(this.value)">
         <option value="chants">เรียงตามยอดสวดสูงสุด</option>
@@ -359,11 +365,11 @@
       <div class="p-6 space-y-4">
         <div>
           <label class="block text-sm font-semibold text-dci-text-light mb-1">Username (ใช้: admin)</label>
-          <input id="login-user" type="text" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:border-dci-gold outline-none">
+          <input id="login-user" type="text" autocomplete="username" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:border-dci-gold outline-none">
         </div>
         <div>
           <label class="block text-sm font-semibold text-dci-text-light mb-1">Password (ใช้: password)</label>
-          <input id="login-pass" type="password" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:border-dci-gold outline-none" onkeypress="if(event.key==='Enter') handleLogin()">
+          <input id="login-pass" type="password" autocomplete="current-password" class="w-full px-3 py-2 border border-dci-cream-dark rounded-md bg-dci-cream focus:border-dci-gold outline-none" onkeypress="if(event.key==='Enter') handleLogin()">
         </div>
         <p id="login-error" class="text-red-500 text-xs hidden font-medium">❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</p>
         <button class="w-full bg-dci-dark text-dci-gold font-bold py-3 rounded-md shadow-md hover:bg-black transition-all" onclick="handleLogin()">เข้าสู่ระบบ</button>
@@ -953,9 +959,6 @@ function showToast(msg) {
   setTimeout(() => t.classList.add('translate-y-32', 'opacity-0'), 3000); 
 }
 
-// ==========================================
-// MODIFIED: SHOW MONK DETAIL (LARGE SQUARE PHOTO)
-// ==========================================
 function showMonkDetail(id) {
   const m = monks.find(x => x.id === id);
   if(!m) return;
